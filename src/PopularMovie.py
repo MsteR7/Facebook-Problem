@@ -63,19 +63,18 @@ class Facebook:
 def MostPopularMovieOnNetwork(user: User, userVisited: list, plateform: Facebook, isRootCall=True):
     userVisited.append(user.get_name())
     movieCounter = Counter(user.get_moviesList())
-    #print(movieCounter)
 
     for friend in user.get_friends():
-        #print(f"Current friend {plateform.getUserById(friend).get_name()}")
-        movieCounter.update(plateform.getUserById(friend).get_moviesList())
         if plateform.getUserById(friend).get_name() not in userVisited:
-            #print("Not visited yet!")
-            #print("Updated")
-            #print(movieCounter)
-            MostPopularMovieOnNetwork(plateform.getUserById(friend), userVisited, plateform, isRootCall=False)
+            #print(f"Current friend {plateform.getUserById(friend).get_name()}")
+            friendCounter = MostPopularMovieOnNetwork(plateform.getUserById(friend), userVisited, plateform, isRootCall=False)
+            movieCounter.update(friendCounter)
 
     PopularMovie = plateform.getMovieById(movieCounter.most_common(1)[0][0])
 
     if isRootCall:
+        print(movieCounter)
         print(f"The most popular on {userVisited[0]}'s network is {PopularMovie.title}")
-    return PopularMovie.title
+        return PopularMovie.title
+    else:
+        return movieCounter
