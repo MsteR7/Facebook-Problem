@@ -73,7 +73,6 @@ def MostPopularMovieOnNetwork(user: User, userVisited: list, plateform: Facebook
             #print("Updated")
             #print(movieCounter)
             MostPopularMovieOnNetwork(plateform.getUserById(friend), userVisited, plateform, isRootCall=False)
-        continue
 
     PopularMovie = plateform.getMovieById(movieCounter.most_common(1)[0][0])
 
