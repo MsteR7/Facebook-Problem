@@ -1,0 +1,23 @@
+{
+    "Sallie": {
+        "friends" : [2, 3],
+        "movies": [13, 5, 16, 22]
+    },
+    "Rhea": {
+        "friends" : [1],
+        "movies": [31, 22, 5]
+    },
+    "Paul": {
+        "friends" : [1, 5],
+        "movies": [27, 5]
+    },
+    "Amanda": {
+        "friends" : [1, 4],
+        "movies": [27, 2, 8]
+    },
+    "Steve": {
+        "friends" : [3, 4],
+        "movies": [10, 12, 1, 23]
+    }
+
+}
