@@ -31,8 +31,8 @@ def CreatePlateform():
 def test_popularMovie():
     mockDatabase = CreatePlateform()
     assert MostPopularMovieOnNetwork(mockDatabase.getUserById(1), [], mockDatabase, isRootCall=True) == "Mafioso"
-    assert MostPopularMovieOnNetwork(mockDatabase.getUserById(2), [], mockDatabase, isRootCall=True) == "Spotlight"
-    assert MostPopularMovieOnNetwork(mockDatabase.getUserById(5), [], mockDatabase, isRootCall=True) == "Psycho"
+    assert MostPopularMovieOnNetwork(mockDatabase.getUserById(2), [], mockDatabase, isRootCall=True) == "Before Sunrise"
+    assert MostPopularMovieOnNetwork(mockDatabase.getUserById(7), [], mockDatabase, isRootCall=True) == "The Dark Knight"
     print('Test Succeed')
 
 

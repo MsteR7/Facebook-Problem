@@ -4,7 +4,7 @@
         "movies": [13, 5, 16, 22]
     },
     "Rhea": {
-        "friends" : [1],
+        "friends" : [6],
         "movies": [31, 22, 5]
     },
     "Paul": {
@@ -16,8 +16,21 @@
         "movies": [27, 2, 8]
     },
     "Steve": {
-        "friends" : [3, 4],
+        "friends" : [3, 7, 8],
         "movies": [10, 12, 1, 23]
+    },
+    "Tom": {
+        "friends" : [],
+        "movies": [13, 4, 26, 31]
+    },
+    "Bella": {
+        "friends" : [8],
+        "movies": [11, 20, 19, 6]
+    },
+    "Ann": {
+        "friends" : [7],
+        "movies": [3, 32, 15, 17, 6]
     }
+    
 
 }
