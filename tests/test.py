@@ -5,13 +5,21 @@ from src.PopularMovie import MostPopularMovieOnNetwork, User , Movie, Facebook
 
 def CreatePlateform():
         platform = Facebook()
-        with open('tests/BasicTest', 'r') as UserFile:
-            Userdata = json.load(UserFile)
-
-        file = open('tests/MoviesList.txt', 'r')
-        for line in file:
-            platform.addMovies(Movie((line.strip())))
-        file.close()
+        try:
+            with open('tests/BasicTest', 'r') as UserFile:
+                Userdata = json.load(UserFile)
+        except json.JSONDecodeError as e:
+            print("Invalid JSON syntax:", e)
+    
+        try:
+            file = open('tests/MoviesList.txt', 'r')
+            for line in file:
+                platform.addMovies(Movie((line.strip())))
+            file.close()
+        except FileNotFoundError:
+             print("The file 'MoviesList.txt' was not found.")
+        except IOError:
+             print("An error occurred while reading the file 'MoviesList.txt'.")
 
         for key, value in Userdata.items():
             platform.addUser(User(key,value['friends'], value['movies']))

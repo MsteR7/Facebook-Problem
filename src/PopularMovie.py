@@ -26,7 +26,6 @@ class Movie:
         self.title = title
 
 
-
 class Facebook:
     def __init__(self):
         self.__users = []
@@ -45,6 +44,7 @@ class Facebook:
         for index, movie in enumerate(self.__movies):
             if index == id:
                 return movie
+            
     def getUserById(self, id):
         id = id - 1
         for index, user in enumerate(self.__users):
@@ -55,7 +55,6 @@ class Facebook:
         for user in self.__users:
             if user.get_name() == name:
                 return user
-
 
     def getUsers(self):
         return self.__users
@@ -69,7 +68,7 @@ def MostPopularMovieOnNetwork(user: User, userVisited: list, plateform: Facebook
     for friend in user.get_friends():
         #print(f"Current friend {plateform.getUserById(friend).get_name()}")
         movieCounter.update(plateform.getUserById(friend).get_moviesList())
-        if not plateform.getUserById(friend).get_name() in userVisited:
+        if plateform.getUserById(friend).get_name() not in userVisited:
             #print("Not visited yet!")
             #print("Updated")
             #print(movieCounter)
