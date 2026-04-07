@@ -70,9 +70,9 @@ def MostPopularMovieOnNetwork(user: User, userVisited: list, plateform: Facebook
             friendCounter = MostPopularMovieOnNetwork(plateform.getUserById(friend), userVisited, plateform, isRootCall=False)
             movieCounter.update(friendCounter)
 
-    PopularMovie = plateform.getMovieById(movieCounter.most_common(1)[0][0])
 
     if isRootCall:
+        PopularMovie = plateform.getMovieById(movieCounter.most_common(1)[0][0])
         print(movieCounter)
         print(f"The most popular on {userVisited[0]}'s network is {PopularMovie.title}")
         return PopularMovie.title
