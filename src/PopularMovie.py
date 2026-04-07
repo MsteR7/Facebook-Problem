@@ -1,3 +1,5 @@
+from collections import Counter
+
 
 class User:
     def __init__(self, name, friends, movies):
@@ -27,28 +29,55 @@ class Movie:
 
 class Facebook:
     def __init__(self):
-        self.__users = {}
+        self.__users = []
         self.__movies = []
 
     def addUser(self, user: User):
-        self.__users[user.get_name()] = [user.get_friends(), user.get_moviesList()]
+        self.__users.append(user)
 
     def addMovies(self, movie: Movie):
-        self.__movies.append(movie.title)
+        self.__movies.append(movie)
 
     def getMovies(self):
         return self.__movies
 
     def getMovieById(self, id):
-        id -= 1
         for index, movie in enumerate(self.__movies):
             if index == id:
                 return movie
+    def getUserById(self, id):
+        id = id - 1
+        for index, user in enumerate(self.__users):
+            if index == id:
+                return user
+
+    def getUserByName(self, name):
+        for user in self.__users:
+            if user.get_name() == name:
+                return user
 
 
     def getUsers(self):
         return self.__users
 
 
-def MostPopularMovieOnNetwork(user):
-    return "None"
+def MostPopularMovieOnNetwork(user: User, userVisited: list, plateform: Facebook, isRootCall=True):
+    userVisited.append(user.get_name())
+    movieCounter = Counter(user.get_moviesList())
+    #print(movieCounter)
+
+    for friend in user.get_friends():
+        #print(f"Current friend {plateform.getUserById(friend).get_name()}")
+        movieCounter.update(plateform.getUserById(friend).get_moviesList())
+        if not plateform.getUserById(friend).get_name() in userVisited:
+            #print("Not visited yet!")
+            #print("Updated")
+            #print(movieCounter)
+            MostPopularMovieOnNetwork(plateform.getUserById(friend), userVisited, plateform, isRootCall=False)
+        continue
+
+    PopularMovie = plateform.getMovieById(movieCounter.most_common(1)[0][0])
+
+    if isRootCall:
+        print(f"The most popular on {userVisited[0]}'s network is {PopularMovie.title}")
+    return PopularMovie.title
